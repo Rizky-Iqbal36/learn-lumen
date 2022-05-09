@@ -5,14 +5,27 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      # MYSQL_USER: homestead
     ports:
       - 3306:3306
     networks:
       - net
-
+  phpmyadmin:
+    container_name: phpmyadmin
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: root
+    networks:
+      - net
   redis:
     container_name: redis
     image: redis:alpine
