@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  database:
+    container_name: database
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+    ports:
+      - 3306:3306
+    networks:
+      - net
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
