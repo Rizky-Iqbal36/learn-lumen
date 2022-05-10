@@ -16,3 +16,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api/v1'], function ($router) {
+    $router->post('car', 'CarController@createCar');
+    $router->put('car/{id}', 'CarController@updateCar');
+    $router->delete('car/{id}', 'CarController@deleteCar');
+    $router->get('cars', 'CarController@getCars');
+});
