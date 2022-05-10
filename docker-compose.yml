@@ -5,9 +5,10 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test_db
-      # MYSQL_USER: homestead
+      MYSQL_ROOT_PASSWORD: superuser
+      MYSQL_DATABASE: development
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: secret
     ports:
       - 3306:3306
     networks:
@@ -23,7 +24,7 @@ services:
     environment:
       PMA_HOST: database
       PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_PASSWORD: superuser
     networks:
       - net
   redis:

@@ -37,6 +37,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "db:migrate": "php artisan migrate",
         "dependency:local": "docker-compose up -d database redis phpmyadmin",
         "commit": "git-cz",
         "post-root-package-install": [
