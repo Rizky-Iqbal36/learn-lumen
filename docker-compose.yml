@@ -1,5 +1,24 @@
 version: '3.7'
 services:
+  php-app:
+    container_name: php-app
+    restart: always
+    depends_on:
+      - database
+      - phpmyadmin
+      - redis
+    image: php-app
+    build:
+      context: .
+      dockerfile: AlpinePHP.Dockerfile
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: bash -c "composer install && php -S php-app:8000 -t public"
+    ports:
+      - 8000:8000
+    networks:
+      - net
   database:
     container_name: database
     image: mysql
